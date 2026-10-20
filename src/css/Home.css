@@ -1,0 +1,103 @@
+.home {
+  min-height: 100vh;
+  background-color: #f7f6ff;
+  color: #292747;
+}
+
+
+.home .navbar {
+  background-color: #ffffff;
+}
+
+
+.home .btn-primary {
+  background-color: #7867d9;
+  border-color: #7867d9;
+}
+
+.home .btn-primary:hover {
+  background-color: #6252c4;
+  border-color: #6252c4;
+}
+
+.home .preview {
+  background-color: #ffffff;
+  border: 1px solid #e9e5fa;
+  border-radius: 18px;
+}
+
+
+.home .product-box {
+  background-color: #eeeaff;
+  border-radius: 12px;
+}
+
+.home .billing-box {
+  background-color: #e5f3ff;
+  border-radius: 12px;
+}
+
+.home .product-box h5 {
+  color: #6654bd;
+}
+
+.home .billing-box h5 {
+  color: #3476b9;
+}
+
+
+.home .features {
+  background-color: #efedff;
+}
+
+.home .feature-box {
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.home .feature-box:hover {
+  transform: translateY(-4px);
+}
+
+.home .product-feature {
+  background-color: #e9e4ff;
+}
+
+.home .billing-feature {
+  background-color: #e1efff;
+}
+
+.home .inventory-feature {
+  background-color: #e0f5ee;
+}
+
+
+.home .about-box {
+  background-color: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e9e5fa;
+}
+
+.home .about-note {
+  background-color: #f0edff;
+  border-radius: 12px;
+}
+
+
+.home .contact {
+  background-color: #e9f3ff;
+}
+
+
+.home .footer {
+  background-color: #07060600;
+}
+
+.home .footer a {
+  color: #6654bd;
+  text-decoration: none;
+}
+
+.home .footer a:hover {
+  color: #3476b9;
+}

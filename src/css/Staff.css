@@ -1,0 +1,169 @@
+.staff-container {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  color: black;
+}
+
+.staff-container h2 {
+  color: navy;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.staff-container p {
+  color: gray;
+  margin-bottom: 25px;
+}
+
+.staff-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.staff-header h3 {
+  color: navy;
+}
+
+.add-staff-btn {
+  padding: 11px 18px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-staff-btn:hover {
+  background-color: darkblue;
+}
+
+.staff-form {
+  background-color: white;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.staff-form h3 {
+  color: navy;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.staff-form form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.staff-form input,
+.staff-form select {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.staff-form input:focus,
+.staff-form select:focus {
+  outline: none;
+  border-color: blue;
+}
+
+.save-staff-btn {
+  padding: 12px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-staff-btn:hover {
+  background-color: darkgreen;
+}
+
+.staff-table {
+  width: 100%;
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.staff-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.staff-table th {
+  padding: 16px;
+  text-align: left;
+  background-color: navy;
+  color: white;
+  border: 1px solid lightgray;
+}
+
+.staff-table td {
+  padding: 15px;
+  text-align: left;
+  color: black;
+  border: 1px solid lightgray;
+}
+
+.staff-table tr:nth-child(even) td {
+  background-color: #f1f5f9;
+}
+
+.staff-table tr:hover td {
+  background-color: lightblue;
+}
+
+.delete-staff-btn {
+  padding: 8px 14px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-staff-btn:hover {
+  background-color: darkred;
+}
+
+@media (max-width: 700px) {
+  .staff-container {
+    padding: 15px;
+  }
+
+  .staff-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .staff-form {
+    padding: 15px;
+  }
+
+  .staff-form form {
+    flex-direction: column;
+  }
+
+  .staff-form input,
+  .staff-form select,
+  .save-staff-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

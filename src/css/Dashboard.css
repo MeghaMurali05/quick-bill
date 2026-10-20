@@ -1,0 +1,139 @@
+.dashboard-container {
+  min-height: 100vh;
+  padding: 30px;
+  background-color: #f1f5f9;
+  font-family: Arial, sans-serif;
+  color: #172554;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  color: #172554;
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.dashboard-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.dashboard-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 210px;
+  padding: 24px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(23, 37, 84, 0.1);
+  border-color: #c4b5fd;
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  background-color: #ede9fe;
+  border-radius: 12px;
+  font-size: 27px;
+}
+
+.feature-title {
+  margin-bottom: 9px;
+  color: #172554;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.feature-description {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.feature-arrow {
+  margin-top: auto;
+  padding-top: 18px;
+  color: #6d28d9;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+@media (max-width: 900px) {
+  .dashboard-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 22px;
+  }
+
+  .dashboard-header h2 {
+    font-size: 23px;
+  }
+
+  .dashboard-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .dashboard-feature-card {
+    min-height: 185px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .feature-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 14px;
+    font-size: 22px;
+  }
+
+  .feature-title {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .feature-description {
+    font-size: 12px;
+  }
+
+  .feature-arrow {
+    padding-top: 14px;
+    font-size: 12px;
+  }
+}

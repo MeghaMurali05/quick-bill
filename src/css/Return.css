@@ -1,0 +1,152 @@
+.return-container {
+  padding: 25px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.return-container h2 {
+  color: navy;
+  margin-bottom: 5px;
+}
+
+.return-container p {
+  color: gray;
+  margin-bottom: 20px;
+}
+
+
+.returns-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.returns-header input {
+  padding: 11px;
+  width: 280px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-return-btn {
+  padding: 11px 20px;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-return-btn:hover {
+  background: navy;
+}
+
+
+
+.return-container form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #d1d5db;
+}
+
+.return-container form input {
+  flex: 1;
+  min-width: 150px;
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.return-container form input:focus {
+  outline: none;
+  border-color: blue;
+}
+
+.return-container form button {
+  padding: 11px 20px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.return-container form button:hover {
+  background: darkgreen;
+}
+
+
+
+.returns-table {
+  background: white;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px #d1d5db;
+}
+
+.returns-table table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+}
+
+.returns-table th {
+  background: navy;
+  color: white;
+  padding: 15px;
+  text-align: left;
+}
+
+.returns-table td {
+  padding: 14px 15px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+}
+
+.returns-table tbody tr:nth-child(even) {
+  background: #f1f5f9;
+}
+
+.returns-table tbody tr:hover {
+  background: #e0e7ff;
+}
+
+
+
+@media (max-width: 600px) {
+  .return-container {
+    padding: 15px;
+  }
+
+  .returns-header {
+    flex-direction: column;
+  }
+
+  .returns-header input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .add-return-btn {
+    width: 100%;
+  }
+
+  .return-container form {
+    flex-direction: column;
+  }
+
+  .return-container form input,
+  .return-container form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,100 @@
+.billing-container {
+  padding: 25px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.billing-container h2 {
+  color: navy;
+  margin-bottom: 5px;
+}
+
+.billing-container p {
+  color: gray;
+}
+
+.billing-form {
+  background: white;
+  padding: 25px;
+  margin-top: 20px;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #d1d5db;
+}
+
+.billing-form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+.billing-form input,
+.billing-form select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.billing-form input:focus,
+.billing-form select:focus {
+  outline: none;
+  border-color: blue;
+}
+
+.generate-bill-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 22px;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.generate-bill-btn:hover {
+  background: navy;
+}
+
+.bill-details {
+  background: white;
+  max-width: 550px;
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 10px;
+  border-left: 5px solid green;
+  box-shadow: 0 2px 8px #d1d5db;
+}
+
+.bill-details h3 {
+  color: navy;
+  margin-bottom: 15px;
+}
+
+.bill-details p {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.bill-details h3:last-child {
+  color: green;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .billing-container {
+    padding: 15px;
+  }
+
+  .billing-form,
+  .bill-details {
+    padding: 18px;
+  }
+}
