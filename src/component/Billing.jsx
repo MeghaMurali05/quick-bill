@@ -22,7 +22,7 @@ function Billing() {
       const data = await response.json();
       setProducts(data);
     } catch {
-      setMessage('Products load cheyyan pattiyilla.');
+      setMessage('Products not loaded successfully');
     }
   }
 
