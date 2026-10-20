@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import '../css/Home.css'
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import '../css/Home.css';
 import BackButton from './BackButton';
 
 function Home() {
@@ -7,37 +8,40 @@ function Home() {
 
   return (
     <div className="home">
-        <BackButton/>
+      <BackButton />
 
-<nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm px-4 py-3">
-  <a className="navbar-brand fw-bold fs-3" href="/">
-    Quick<span className="text-primary">Bill</span>
-  </a>
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm px-4 py-3">
+        <Link className="navbar-brand fw-bold fs-3" to="/">
+          Quick<span className="text-primary">Bill</span>
+        </Link>
 
-  <div className="ms-auto d-flex align-items-center gap-3">
-    <a href="#about" className="text-dark text-decoration-none">
-      About
-    </a>
+        <div className="ms-auto d-flex align-items-center gap-3">
+          <a href="#about" className="text-dark text-decoration-none">
+            About
+          </a>
 
-    <a href="#features" className="text-dark text-decoration-none">
-      Features
-    </a>
+          <a href="#features" className="text-dark text-decoration-none">
+            Features
+          </a>
 
-    <a href="#contact" className="text-dark text-decoration-none">
-      Contact
-    </a>
+          <a href="#contact" className="text-dark text-decoration-none">
+            Contact
+          </a>
 
-    <button
-      className="btn btn-primary"
-      onClick={() => navigate('/login')}
-    >
-      Login
-    </button>
-  </div>
-</nav>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => navigate('/login')}
+          >
+            Login
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
       <section className="container py-5">
         <div className="row align-items-center py-4">
-
           <div className="col-md-6 mb-4">
             <span className="badge rounded-pill bg-light text-primary p-2 mb-3">
               SMART BILLING SYSTEM
@@ -53,10 +57,11 @@ function Home() {
 
             <p className="text-secondary">
               Manage products, create bills and track your inventory
-              easily with QuickBill
+              easily with QuickBill.
             </p>
 
             <button
+              type="button"
               className="btn btn-primary btn-lg mt-3"
               onClick={() => navigate('/login')}
             >
@@ -64,16 +69,11 @@ function Home() {
             </button>
           </div>
 
-       
           <div className="col-md-6">
             <div className="preview p-4 shadow-sm">
-
               <h3 className="fw-bold mb-2">QuickBill</h3>
 
-           
-
               <div className="row g-3 mb-4">
-
                 <div className="col-6">
                   <div className="product-box p-3">
                     <h5>Products</h5>
@@ -87,21 +87,17 @@ function Home() {
                     <p className="mb-0">Create Bills</p>
                   </div>
                 </div>
+              </div>
 
-              </div><hr />
-
-             
-
+              <hr />
             </div>
           </div>
-
         </div>
       </section>
 
-    
+      {/* Features Section */}
       <section className="features py-5" id="features">
         <div className="container">
-
           <div className="text-center mb-5">
             <h2 className="fw-bold">Our Features</h2>
             <p className="text-secondary">
@@ -110,7 +106,6 @@ function Home() {
           </div>
 
           <div className="row g-4">
-
             <div className="col-md-4">
               <div className="feature-box product-feature p-4 h-100">
                 <h5 className="fw-bold">Product Management</h5>
@@ -137,83 +132,73 @@ function Home() {
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-    
+      {/* About Section */}
       <section className="container py-5" id="about">
         <div className="about-box p-4 p-md-5">
           <div className="row align-items-center">
-
             <div className="col-md-7">
               <h2 className="fw-bold">About QuickBill</h2>
 
               <p className="text-secondary mb-0">
                 QuickBill is a simple billing and inventory management
                 system that helps businesses manage products, create
-                bills and track stock efficiently
+                bills and track stock efficiently.
               </p>
             </div>
 
             <div className="col-md-5 mt-4 mt-md-0">
               <div className="about-note p-3">
                 <h5 className="fw-bold">Our Goal</h5>
+
                 <p className="text-secondary mb-0">
                   Making everyday business operations simple and efficient
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      
+      {/* Contact Section */}
       <section className="contact py-5" id="contact">
         <div className="container text-center">
-
           <h2 className="fw-bold mb-3">Contact Us</h2>
 
           <p className="text-secondary">
-            Have questions? We would love to hear from you
+            Have questions? We would love to hear from you.
           </p>
 
           <a
             className="btn btn-outline-primary mt-2"
-            href="mailto:your-email@example.com"
+            href="mailto:quickbill@gmail.com"
           >
             quickbill@gmail.com
           </a>
-
         </div>
       </section>
 
-    
-     <footer className="footer bg-dark text-white py-4">
-  <div className="container text-center">
+      {/* Footer */}
+      <footer className="footer bg-dark text-white py-4">
+        <div className="container text-center">
+          <h4 className="fw-bold">
+            Quick<span className="text-primary">Bill</span>
+          </h4>
 
-    <h4 className="fw-bold">
-      Quick<span className="text-primary">Bill</span>
-    </h4>
+          <p className="text-light">
+            Simple Billing for Your Business
+          </p>
 
-    <p className="text-light">
-      Simple Billing for Your Business
-    </p>
+          <hr className="border-secondary" />
 
-   
-
-    <hr className="border-secondary" />
-
-    <p className="small text-light mb-0">
-      © 2026 QuickBill. All rights reserved.
-    </p>
-
-  </div>
-</footer>
-    
-
+          <p className="small text-light mb-0">
+            © 2026 QuickBill. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

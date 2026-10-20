@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import '../css/Billing.css';
 import BackButton from './BackButton';
 
-const API = 'http://localhost:8000/api';
+const API = 'https://quick-bill-jxuh.onrender.com/api';
 
 function Billing() {
   const [customer, setCustomer] = useState('');
@@ -88,7 +87,7 @@ function Billing() {
 
   return (
     <div className="billing-container">
-      <BackButton/>
+      <BackButton />
       <h2>Billing</h2>
       <p>Create a new customer bill</p>
 

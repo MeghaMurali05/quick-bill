@@ -1,81 +1,109 @@
+
 import React, { useState, useEffect } from 'react';
 import '../css/Staff.css';
 import BackButton from './BackButton';
 
+const API = 'https://quick-bill-jxuh.onrender.com/api';
+
 function Staff() {
   const [staff, setStaff] = useState([]);
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/staff')
-      .then((response) => response.json())
-      .then((data) => setStaff(data))
-      .catch((error) => console.log('Error fetching staff:', error));
-  }, []);
+    async function loadStaff() {
+      try {
+        const response = await fetch(`${API}/staff`);
 
+        if (!response.ok) {
+          throw new Error('Unable to load staff details');
+        }
+
+        const data = await response.json();
+        setStaff(data);
+      } catch (error) {
+        console.error('Error fetching staff:', error);
+        setMessage('Unable to load staff details. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadStaff();
+  }, []);
 
   async function addStaff(e) {
     e.preventDefault();
+    setMessage('');
+
+    if (!name.trim() || !email.trim() || !role) {
+      setMessage('Please fill all fields.');
+      return;
+    }
 
     try {
-      const response = await fetch('http://localhost:8000/api/staff', {
+      const response = await fetch(`${API}/staff`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: name,
-          email: email,
-          role: role
-        })
+          name: name.trim(),
+          email: email.trim(),
+          role,
+        }),
       });
 
       const newStaff = await response.json();
 
       if (!response.ok) {
-        alert(newStaff.message || 'Unable to save staff');
+        setMessage(newStaff.message || 'Unable to save staff.');
         return;
       }
 
-      setStaff([...staff, newStaff]);
+      setStaff((previousStaff) => [...previousStaff, newStaff]);
 
       setName('');
       setEmail('');
       setRole('');
+      setMessage('Staff added successfully.');
     } catch (error) {
-      console.log('Error adding staff:', error);
-      alert('Unable to connect to server');
+      console.error('Error adding staff:', error);
+      setMessage('Unable to connect to server.');
     }
   }
 
- 
   async function deleteStaff(id) {
+    setMessage('');
+
     try {
-      const response = await fetch(
-        `http://localhost:8000/api/staff/${id}`,
-        {
-          method: 'DELETE'
-        }
-      );
+      const response = await fetch(`${API}/staff/${id}`, {
+        method: 'DELETE',
+      });
 
       if (!response.ok) {
-        alert('Unable to delete staff');
+        setMessage('Unable to delete staff.');
         return;
       }
 
-      setStaff(staff.filter((person) => person._id !== id));
+      setStaff((previousStaff) =>
+        previousStaff.filter((person) => person._id !== id)
+      );
+
+      setMessage('Staff deleted successfully.');
     } catch (error) {
-      console.log('Error deleting staff:', error);
-      alert('Unable to connect to server');
+      console.error('Error deleting staff:', error);
+      setMessage('Unable to connect to server.');
     }
   }
 
   return (
     <div className="staff-container">
-      <BackButton/>
+      <BackButton />
+
       <h2>Staff Management</h2>
       <p>Manage your store employees</p>
 
@@ -114,6 +142,8 @@ function Staff() {
         </button>
       </form>
 
+      {message && <p role="status">{message}</p>}
+
       <h3>Staff Details</h3>
 
       <div className="staff-table">
@@ -129,22 +159,33 @@ function Staff() {
           </thead>
 
           <tbody>
-            {staff.map((person, index) => (
-              <tr key={person._id}>
-                <td>S{String(index + 1).padStart(3, '0')}</td>
-                <td>{person.name}</td>
-                <td>{person.email}</td>
-                <td>{person.role}</td>
-                <td>
-                  <button
-                    className="delete-staff-btn"
-                    onClick={() => deleteStaff(person._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+            {loading ? (
+              <tr>
+                <td colSpan="5">Loading staff details...</td>
               </tr>
-            ))}
+            ) : staff.length > 0 ? (
+              staff.map((person, index) => (
+                <tr key={person._id}>
+                  <td>S{String(index + 1).padStart(3, '0')}</td>
+                  <td>{person.name}</td>
+                  <td>{person.email}</td>
+                  <td>{person.role}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="delete-staff-btn"
+                      onClick={() => deleteStaff(person._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No staff details available.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -153,3 +194,4 @@ function Staff() {
 }
 
 export default Staff;
+

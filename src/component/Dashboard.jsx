@@ -9,43 +9,43 @@ function Dashboard() {
     {
       title: 'Product Management',
       description: 'Manage products and stock details',
-     
+      icon: '📦',
       path: '/product',
     },
     {
       title: 'Staff Management',
       description: 'View and manage staff members',
-     
+      icon: '👥',
       path: '/staff',
     },
     {
       title: 'Billing',
       description: 'Create customer bills',
-      
+      icon: '🧾',
       path: '/billing',
     },
     {
       title: 'Transactions',
       description: 'View billing transactions',
-    
+      icon: '💳',
       path: '/transaction',
     },
     {
       title: 'Product Returns',
       description: 'Manage returned products',
-    
+      icon: '↩️',
       path: '/return',
     },
     {
       title: 'Suppliers',
       description: 'Manage supplier information',
-     
+      icon: '🚚',
       path: '/supplier',
     },
     {
       title: 'Reports',
       description: 'View business reports',
-     
+      icon: '📊',
       path: '/reports',
     },
   ];
@@ -65,7 +65,9 @@ function Dashboard() {
             key={feature.path}
             onClick={() => navigate(feature.path)}
           >
-            <span className="feature-icon">{feature.icon}</span>
+            <span className="feature-icon">
+              {feature.icon}
+            </span>
 
             <span className="feature-title">
               {feature.title}
@@ -75,7 +77,9 @@ function Dashboard() {
               {feature.description}
             </span>
 
-            <span className="feature-arrow">Explore </span>
+            <span className="feature-arrow">
+              Explore →
+            </span>
           </button>
         ))}
       </div>

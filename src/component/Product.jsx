@@ -1,89 +1,127 @@
+
 import React, { useState, useEffect } from 'react';
 import '../css/Product.css';
 import BackButton from './BackButton';
 
+const API = 'https://quick-bill-jxuh.onrender.com/api';
+
 function Product() {
   const [products, setProducts] = useState([]);
-
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
   const [search, setSearch] = useState('');
-
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/products')
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.log('Error fetching products:', error));
+    async function loadProducts() {
+      try {
+        const response = await fetch(`${API}/products`);
+
+        if (!response.ok) {
+          throw new Error('Unable to load products');
+        }
+
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.log('Error fetching products:', error);
+        setMessage('Unable to load products. Please try again.');
+      }
+    }
+
+    loadProducts();
   }, []);
 
-
   async function addProduct() {
-    if (name === '' || category === '' || price === '' || stock === '') {
-      alert('Please fill all fields');
+    setMessage('');
+
+    if (
+      !name.trim() ||
+      !category.trim() ||
+      price === '' ||
+      stock === ''
+    ) {
+      setMessage('Please fill all fields.');
+      return;
+    }
+
+    if (Number(price) <= 0 || Number(stock) < 0) {
+      setMessage('Enter a valid price and stock quantity.');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/products', {
+      const response = await fetch(`${API}/products`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: name,
-          category: category,
+          name: name.trim(),
+          category: category.trim(),
           price: Number(price),
-          quantity: Number(stock)
-        })
+          quantity: Number(stock),
+        }),
       });
 
       const newProduct = await response.json();
 
       if (!response.ok) {
-        alert(newProduct.message || 'Unable to add product');
+        setMessage(newProduct.message || 'Unable to add product.');
         return;
       }
 
-      setProducts([...products, newProduct]);
+      setProducts((previousProducts) => [
+        ...previousProducts,
+        newProduct,
+      ]);
 
       setName('');
       setCategory('');
       setPrice('');
       setStock('');
+
+      setMessage('Product added successfully.');
     } catch (error) {
       console.log('Error adding product:', error);
-      alert('Unable to connect to server');
+      setMessage('Unable to connect to server.');
     }
   }
 
-
   async function deleteProduct(id) {
+    setMessage('');
+
     try {
-      const response = await fetch(
-        `http://localhost:8000/api/products/${id}`,
-        {
-          method: 'DELETE'
-        }
-      );
+      const response = await fetch(`${API}/products/${id}`, {
+        method: 'DELETE',
+      });
 
       if (!response.ok) {
-        alert('Unable to delete product');
+        setMessage('Unable to delete product.');
         return;
       }
 
-      setProducts(products.filter((product) => product._id !== id));
+      setProducts((previousProducts) =>
+        previousProducts.filter((product) => product._id !== id)
+      );
+
+      setMessage('Product deleted successfully.');
     } catch (error) {
       console.log('Error deleting product:', error);
-      alert('Unable to connect to server');
+      setMessage('Unable to connect to server.');
     }
   }
 
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="products-container">
-      <BackButton/>
+      <BackButton />
+
       <h2>Products</h2>
       <p>Manage your textile shop products</p>
 
@@ -117,6 +155,8 @@ function Product() {
 
           <input
             type="number"
+            min="0.01"
+            step="0.01"
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -124,16 +164,24 @@ function Product() {
 
           <input
             type="number"
+            min="0"
+            step="1"
             placeholder="Stock"
             value={stock}
             onChange={(e) => setStock(e.target.value)}
           />
 
-          <button className="add-product-btn" onClick={addProduct}>
+          <button
+            type="button"
+            className="add-product-btn"
+            onClick={addProduct}
+          >
             Add Product
           </button>
         </div>
       </div>
+
+      {message && <p role="status">{message}</p>}
 
       <div className="products-table">
         <table>
@@ -149,11 +197,8 @@ function Product() {
           </thead>
 
           <tbody>
-            {products
-              .filter((product) =>
-                product.name.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((product, index) => (
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product, index) => (
                 <tr key={product._id}>
                   <td>{index + 1}</td>
                   <td>{product.name}</td>
@@ -162,6 +207,7 @@ function Product() {
                   <td>{product.quantity}</td>
                   <td>
                     <button
+                      type="button"
                       className="delete-btn"
                       onClick={() => deleteProduct(product._id)}
                     >
@@ -169,7 +215,14 @@ function Product() {
                     </button>
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6">
+                  {search ? 'No matching products found.' : 'No products available.'}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -178,3 +231,4 @@ function Product() {
 }
 
 export default Product;
+

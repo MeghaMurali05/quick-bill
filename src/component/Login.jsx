@@ -7,11 +7,13 @@ import BackButton from './BackButton';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setMessage('');
 
     if (email === 'admin@gmail.com' && password === 'admin123') {
       localStorage.setItem('role', 'admin');
@@ -23,13 +25,14 @@ const Login = () => {
       localStorage.setItem('role', 'staff');
       navigate('/billing');
     } else {
-      alert('Invalid email or password');
+      setMessage('Invalid email or password');
     }
   };
 
   return (
     <div className="login-container">
-      <BackButton/>
+      <BackButton />
+
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Quick Bill</h2>
         <p>Login to your account</p>
@@ -54,12 +57,17 @@ const Login = () => {
           required
         />
 
-        <button type="submit">Login</button>
+        {message && (
+          <p className="login-error" role="alert">
+            {message}
+          </p>
+        )}
 
-        
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 };
 
 export default Login;
+
